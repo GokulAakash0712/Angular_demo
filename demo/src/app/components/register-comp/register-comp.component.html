@@ -1,0 +1,156 @@
+<!-- register-comp.component.html -->
+<div class="modal-body">
+  <div
+    *ngIf="registrationSuccess && submitted"
+    class="alert alert-success"
+    role="alert"
+  >
+    Registration successful! You can now login.
+  </div>
+  <div class="times">
+    <h2>Register</h2>
+    <button type="button" class="close" (click)="closeModal()">
+      <span aria-hidden="true" style="color: #111">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="registerForm">
+    <div class="mb-3">
+      <label for="firstname" class="form-label"
+        >First Name <span>*</span></label
+      >
+      <input
+        type="text"
+        formControlName="fname"
+        class="form-control"
+        (input)="checkField('fname')"
+        placeholder="Enter FirstName"
+      />
+      <div *ngIf="shouldDisplayError('fname', 'required')" class="error">
+        First Name is required.
+      </div>
+      <div *ngIf="shouldDisplayError('fname', 'pattern')" class="error">
+        First Name should contain only alphabets.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Last Name <span>*</span></label>
+      <input
+        type="text"
+        formControlName="lname"
+        class="form-control"
+        (input)="checkField('lname')"
+        placeholder="Enter LastName"
+      />
+      <div *ngIf="shouldDisplayError('lname', 'required')" class="error">
+        Last Name is required.
+      </div>
+      <div *ngIf="shouldDisplayError('lname', 'pattern')" class="error">
+        Last Name should contain only alphabets.
+      </div>
+    </div>
+    <div>
+      <label for="place_of_birth" class="form-label">Place Of Birth</label>
+      <input
+        type="text"
+        placeholder="Place of Birth"
+        formControlName="placeOfBirth"
+        class="form-control"
+        (input)="checkField('placeOfBirth')"
+      />
+    </div>
+    <div *ngIf="shouldDisplayError('placeOfBirth', 'required')" class="error">
+      Place Of Birth is Required
+    </div>
+    <div *ngIf="shouldDisplayError('placeOfBirth', 'pattern')" class="error">
+      Place of Birth should be Alphabets Only.
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Username <span>*</span></label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        (input)="checkField('name')"
+        placeholder="Enter Username"
+      />
+      <div *ngIf="shouldDisplayError('name', 'required')" class="error">
+        Username is required.
+      </div>
+      <div *ngIf="shouldDisplayError('name', 'pattern')" class="error">
+        Username should start with alphabets.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address <span>*</span></label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        placeholder="Enter Email Address"
+      />
+      <div *ngIf="shouldDisplayError('email', 'required')" class="error">
+        Email is required.
+      </div>
+      <div *ngIf="shouldDisplayError('email', 'pattern')" class="error">
+        Please enter a valid email address.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label"
+        >Mobile Number <span>*</span></label
+      >
+      <input
+        type="text"
+        formControlName="mobile"
+        class="form-control"
+        (input)="checkField('mobile')"
+        placeholder="Enter Mobile Number"
+      />
+      <div *ngIf="shouldDisplayError('mobile', 'required')" class="error">
+        Mobile Number is required.
+      </div>
+      <div *ngIf="shouldDisplayError('mobile', 'pattern')" class="error">
+        Please enter a valid mobile number starting with 6, 7, 8, or 9.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password <span>*</span></label>
+      <input
+        type="password"
+        formControlName="pword"
+        class="form-control"
+        placeholder="Enter password"
+      />
+      <div *ngIf="shouldDisplayError('pword', 'required')" class="error">
+        Password is required.
+      </div>
+      <div *ngIf="shouldDisplayError('pword', 'minlength')" class="error">
+        Password should be at least 6 characters long.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label"
+        >Confirm Password <span>*</span></label
+      >
+      <input
+        type="password"
+        formControlName="cpword"
+        class="form-control"
+        placeholder="Enter Confirm Password"
+      />
+      <div *ngIf="shouldDisplayError('cpword', 'required')" class="error">
+        Confirm Password is required.
+      </div>
+      <div
+        *ngIf="registerForm.hasError('passwordMismatch') && submitted"
+        class="error"
+      >
+        Passwords do not match.
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="register()">Register</button>
+    </div>
+  </form>
+</div>

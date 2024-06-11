@@ -1,0 +1,67 @@
+<!-- login-comp.component.html -->
+<div class="modal-body">
+  <div *ngIf="loginError && submitted" class="alert alert-danger" role="alert">
+    Invalid username or password. Please try again.
+  </div>
+  <div class="times">
+    <h2>Login</h2>
+    <button type="button" class="close" (click)="closeModal()">
+      <span aria-hidden="true" style="color: #111">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username <span>*</span></label>
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control"
+        placeholder="Enter Username"
+      />
+      <div
+        *ngIf="loginForm.get('username')?.hasError('required') && submitted"
+        class="error"
+      >
+        Username is required.
+      </div>
+      <div
+        *ngIf="
+          loginForm.get('username')?.hasError('pattern') &&
+          !loginForm.get('username')?.hasError('required')
+        "
+        class="error"
+      >
+        Username must start with an alphabet.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password <span>*</span></label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Enter Password"
+      />
+      <div
+        *ngIf="loginForm.get('password')?.hasError('required') && submitted"
+        class="error"
+      >
+        Password is required.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div>
+        <button class="btn btn-primary" (click)="login()">Login</button>
+      </div>
+      <div class="modal-login-footer">
+        <p>
+          Are you new user?
+          <a href="#" (click)="openRegisterModal($event)">Register</a>
+        </p>
+        <a href="#" (click)="openForgotPasswordModal($event)"
+          >Forgot Password?</a
+        >
+      </div>
+    </div>
+  </form>
+</div>

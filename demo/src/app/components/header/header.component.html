@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/landingpage"
+      >Movie<span>Tickets</span></a
+    >
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="btn login-btn user-btn lg-ms-5" *ngIf="isLoggedIn">
+            {{ loggedInUsername }}
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="btn login-btn ms-5"
+            (click)="openLoginModal()"
+            *ngIf="!isLoggedIn"
+          >
+            Login
+          </button>
+          <button class="btn login-btn" (click)="logout()" *ngIf="isLoggedIn">
+            Logout
+          </button>
+        </li>
+      </ul>
+  </div>
+</nav>
+

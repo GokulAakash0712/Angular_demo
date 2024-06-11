@@ -1,0 +1,13 @@
+<div class="container-fluid mt-5">
+  <div class="card" style="width: 18rem" *ngFor="let card of cards">
+    <img class="card-img-top" [src]="card.img" alt="Card image cap" />
+    <div class="card-body">
+      <h5 class="card-title">{{card.name}}</h5>
+      <p class="card-text">
+        {{card.detail}}
+      </p>
+      <a routerLink="/details" class="btn">View More</a>
+    </div>
+  </div>
+</div>
+
